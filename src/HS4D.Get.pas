@@ -17,7 +17,7 @@ uses
   HS4D.Interfaces;
 
 type
-  THSD4Get = class(TInterfacedObject, iHS4DGet)
+  THS4DGet = class(TInterfacedObject, iHS4DGet)
     private
       FParent : iHS4D;
       FFileName : string;
@@ -36,26 +36,26 @@ implementation
 uses
   System.Classes;
 
-{ THSD4Get }
+{ THS4DGet }
 
-constructor THSD4Get.Create(Parent: iHS4D);
+constructor THS4DGet.Create(Parent: iHS4D);
 begin
   FParent:= Parent;
 end;
 
-destructor THSD4Get.Destroy;
+destructor THS4DGet.Destroy;
 begin
 
   inherited;
 end;
 
-function THSD4Get.FileName(aName: string): iHS4DGet;
+function THS4DGet.FileName(aName: string): iHS4DGet;
 begin
   Result:= Self;
   FFileName:= aName;
 end;
 
-function THSD4Get.Get(var aImage : TImage) : iHS4DGet;
+function THS4DGet.Get(var aImage : TImage) : iHS4DGet;
 begin
   result:= self;
   if pos('http', FFileName) > 0  then
@@ -67,7 +67,7 @@ begin
     end;
 end;
 
-procedure THSD4Get.GetImageByUrl(URL: string; aImage : TImage);
+procedure THS4DGet.GetImageByUrl(URL: string; aImage : TImage);
 var
   Jpeg: TJPEGImage;
   Strm: TMemoryStream;
@@ -91,7 +91,7 @@ begin
   end;
 end;
 
-class function THSD4Get.New(aParent : iHS4D): iHS4DGet;
+class function THS4DGet.New(aParent : iHS4D): iHS4DGet;
 begin
   result:= Self.Create(aParent);
 end;

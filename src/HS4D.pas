@@ -48,7 +48,7 @@ end;
 
 function THS4D.GetFile: iHS4DGet;
 begin
-  Result:= THSD4Get.new(Self);
+  Result:= THS4DGet.new(Self);
 end;
 
 class function THS4D.New: iHS4D;
