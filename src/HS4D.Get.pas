@@ -21,7 +21,7 @@ type
     private
       FParent : iHS4D;
       FFileName : string;
-    procedure GetImageByUrl(URL: string; APicture: TPicture);
+    procedure GetImageByUrl(URL: string; aImage : TImage);
     public
       constructor Create(Parent : iHS4D);
       destructor Destroy; override;
@@ -60,14 +60,14 @@ begin
   result:= self;
   if pos('http', FFileName) > 0  then
    begin
-     GetImageByUrl(FFileName, aImage.Picture);
+     GetImageByUrl(FFileName, aImage);
    end else
     begin
       aImage.Picture.LoadFromFile(FFileName);
     end;
 end;
 
-procedure THSD4Get.GetImageByUrl(URL: string; APicture: TPicture);
+procedure THSD4Get.GetImageByUrl(URL: string; aImage : TImage);
 var
   Jpeg: TJPEGImage;
   Strm: TMemoryStream;
@@ -82,7 +82,7 @@ begin
     begin
       Strm.Position := 0;
       Jpeg.LoadFromStream(Strm);
-      APicture.Assign(Jpeg);
+      aImage.Picture.Assign(Jpeg);
     end;
   finally
     Strm.Free;
